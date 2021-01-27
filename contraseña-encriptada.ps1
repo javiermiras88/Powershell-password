@@ -1,23 +1,22 @@
+***********ENCRIPTAR CONTRASEÃ‘A**************
+
 cls
 
-Write-Host Escribe la contraseña:
+Write-Host Escribe la contraseÃ±a:
 
-$Secure = Read-Host -AsSecureString
+$password = Read-Host -AsSecureString
+$Encrypted = ConvertFrom-SecureString -SecureString $password
+$Key = (3,4,2,3,5,4,2,2,3,3,2,2,4,3,3,23,1,3,2,7,6,5,3,4)
+Set-Content "C:\Users\javierf\Desktop\password.pass" $Encrypted -Key $Key
 
-$Encrypted = ConvertFrom-SecureString -SecureString $Secure
-
-Set-Content "C:\Users\Administrador\Desktop\contraseña.pass" $Encrypted
-
-Write-Host Contraseña creada!
+Write-Host ContraseÃ±a creada!
 
 
-$Password = Get-Content "C:\Users\Administrador\Desktop\contraseña.pass" | ConvertTo-SecureString
-        
+**********DESENCRIPTAR CONTRASEÃ‘A******************
+
+
+$Key = (3,4,2,3,5,4,2,2,3,3,2,2,4,3,3,23,1,3,2,7,6,5,3,4)
+$Password = get-content "C:\Users\javierf\Desktop\password.pass" | ConvertTo-SecureString -Key $Key
 $Usuario = 'javi'
-
-$Credenciales = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $Usuario,$Password
-        
-$pass = $Credenciales.GetNetworkCredential().Password
-
-
-     
+$Credenciales = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $Usuario,$Password    
+$Credenciales.GetNetworkCredential().Password
