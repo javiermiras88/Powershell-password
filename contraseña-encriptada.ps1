@@ -20,3 +20,14 @@ $Password = get-content "C:\Users\javierf\Desktop\password.pass" | ConvertTo-Sec
 $Usuario = 'javi'
 $Credenciales = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $Usuario,$Password    
 $Credenciales.GetNetworkCredential().Password
+
+
+
+
+
+
+
+
+
+
+
